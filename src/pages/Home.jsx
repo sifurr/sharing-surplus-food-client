@@ -1,3 +1,4 @@
+import FeaturedFoods from "../components/FeaturedFoods";
 import Container from "../components/ui/Container";
 
 
@@ -5,6 +6,7 @@ import Container from "../components/ui/Container";
 const Home = () => {
     return (
         <Container>
+            {/* Hero section */}
             <div className="hero min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <img src="https://images.pexels.com/photos/6994993/pexels-photo-6994993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" className="max-w-sm rounded-lg shadow-2xl" />
@@ -15,6 +17,10 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Featured Foods section */}
+            <FeaturedFoods></FeaturedFoods>
+
         </Container>
     );
 };

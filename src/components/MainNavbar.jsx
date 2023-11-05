@@ -7,20 +7,24 @@ import toast from 'react-hot-toast'
 
 const MainNavbar = () => {
 
-  const {logout, user} = useAuth()
+  const { logout, user } = useAuth()
 
   const navlinks =
     <>
       <li><NavLink to={'/'} >Home</NavLink></li>
-      <li><NavLink to={'/available-foods'}>Available Foods</NavLink></li>  
+      <li><NavLink to={'/available-foods'}>Available Foods</NavLink></li>
+      {
+        user?.email &&
+        <li><NavLink to={'/user'}>Dashboard</NavLink></li>
+      }
     </>
 
 
-const handleLogout = () => {
-  logout()
+  const handleLogout = () => {
+    logout()
       .then(() => toast.success("Logged out!"))
       .catch(err => console.log(err))
-}
+  }
 
   return (
     <Container>
@@ -36,7 +40,7 @@ const handleLogout = () => {
           </div>
           <div className="flex items-center gap-2">
             <img className="h-14" src={logo} alt="" />
-          <Link className="normal-case text-xl">Food Sharing</Link>
+            <Link className="normal-case text-xl">Food Sharing</Link>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -46,10 +50,10 @@ const handleLogout = () => {
         </div>
         <div className="navbar-end">
           {
-            user?.email ? 
-            <Link onClick={handleLogout} to={'/'} className="mr-5 btn-neutral btn btn-sm"> Logout {user.email} </Link>
-            :
-            <Link to={'/login'} className="mr-5 btn-neutral btn btn-sm">Login</Link>
+            user?.email ?
+              <Link onClick={handleLogout} to={'/'} className="mr-5 btn-neutral btn btn-sm"> Logout {user.email} </Link>
+              :
+              <Link to={'/login'} className="mr-5 btn-neutral btn btn-sm">Login</Link>
           }
           <Link to={'/register'} className="mr-5 btn-primary btn btn-sm">Signup</Link>
         </div>
