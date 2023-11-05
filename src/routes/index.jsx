@@ -9,6 +9,7 @@ import AdminLayout from "../components/layout/AdminLayout";
 import Dashboard from "../pages/Dashboard";
 import Profile from "../pages/Profile";
 import AvailableFoods from "../pages/AvailableFoods";
+import PrivateRoute from "./PrivateRoute";
 
 
 const routes = createBrowserRouter([
@@ -45,15 +46,19 @@ const routes = createBrowserRouter([
     },
     {
         path: '/user',
-        element: <AdminLayout></AdminLayout>,
+        element: <PrivateRoute><AdminLayout></AdminLayout></PrivateRoute>,
         children: [
             {
                 index: true,
-                element: <Dashboard></Dashboard>
+                element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
             },
             {
                 path: 'profile',
-                element: <Profile></Profile>
+                element: <PrivateRoute><Profile></Profile></PrivateRoute>
+            },
+            {
+                path: 'add-food',
+                element: <PrivateRoute></PrivateRoute>
             }
         ]
     }
