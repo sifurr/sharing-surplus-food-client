@@ -17,8 +17,8 @@ const Footer = () => {
                 </nav>
                 <nav>
                     <header className="footer-title">Organization</header>
-                    <Link to={'#'} className="link link-hover">About us</Link>
-                    <Link to={'#'} className="link link-hover">Contact</Link>
+                    <Link to={'/about'} className="link link-hover">About us</Link>
+                    <Link to={'/contact'} className="link link-hover">Contact</Link>
                     <Link to={'#'} className="link link-hover">Jobs</Link>
                     <Link to={'#'} className="link link-hover">Press kit</Link>
                 </nav>

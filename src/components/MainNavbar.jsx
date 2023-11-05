@@ -1,17 +1,26 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from '../assets/images/food-sharing-logo.png'
 import Container from "./ui/Container";
+import useAuth from '../hooks/useAuth'
+import toast from 'react-hot-toast'
 
 
 const MainNavbar = () => {
 
+  const {logout, user} = useAuth()
+
   const navlinks =
     <>
       <li><NavLink to={'/'} >Home</NavLink></li>
-      <li><NavLink to={'/available-foods'}>Available Foods</NavLink></li>
-      <li><NavLink to={'/about'} >About</NavLink></li>
-      <li><NavLink to={'/contact'} >Contact</NavLink></li>
+      <li><NavLink to={'/available-foods'}>Available Foods</NavLink></li>  
     </>
+
+
+const handleLogout = () => {
+  logout()
+      .then(() => toast.success("Logged out!"))
+      .catch(err => console.log(err))
+}
 
   return (
     <Container>
@@ -36,8 +45,12 @@ const MainNavbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to={'/login'} className="mr-5 btn-neutral btn btn-sm">Login</Link>
-          <Link to={'/'} className="mr-5 btn-neutral btn btn-sm">Logout</Link>
+          {
+            user?.email ? 
+            <Link onClick={handleLogout} to={'/'} className="mr-5 btn-neutral btn btn-sm"> Logout {user.email} </Link>
+            :
+            <Link to={'/login'} className="mr-5 btn-neutral btn btn-sm">Login</Link>
+          }
           <Link to={'/register'} className="mr-5 btn-primary btn btn-sm">Signup</Link>
         </div>
       </div>
