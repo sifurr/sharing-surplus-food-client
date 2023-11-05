@@ -1,4 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
+import logo from '../assets/images/food-sharing-logo.png'
+import Container from "./ui/Container";
 
 
 const MainNavbar = () => {
@@ -12,7 +14,7 @@ const MainNavbar = () => {
     </>
 
   return (
-    <div>
+    <Container>
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -23,7 +25,10 @@ const MainNavbar = () => {
               {navlinks}
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">Food Sharing</a>
+          <div className="flex items-center gap-2">
+            <img className="h-14" src={logo} alt="" />
+          <Link className="normal-case text-xl">Food Sharing</Link>
+          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -33,10 +38,10 @@ const MainNavbar = () => {
         <div className="navbar-end">
           <Link to={'/login'} className="mr-5 btn-neutral btn btn-sm">Login</Link>
           <Link to={'/'} className="mr-5 btn-neutral btn btn-sm">Logout</Link>
-          <Link to={'/register'} className="mr-5 btn-neutral btn btn-sm">Signup</Link>
+          <Link to={'/register'} className="mr-5 btn-primary btn btn-sm">Signup</Link>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

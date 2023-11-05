@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import AdminNavbar from "../AdminNavbar";
 
 
-
 const AdminLayout = () => {
     return (
         <div>
@@ -13,7 +12,7 @@ const AdminLayout = () => {
                 </div>
                 <div className="flex-[4]">
                     <Outlet></Outlet>
-                </div>
+                </div>              
             </div>
 
         </div>
