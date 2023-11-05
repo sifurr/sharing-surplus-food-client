@@ -1,13 +1,15 @@
+import { Outlet } from 'react-router-dom'
 import './App.css'
+import MainLayout from './components/layout/MainLayout'
 
 function App() {
 
 
   return (
     <>
-      
-      <h1 className='text-center text-3xl'>Hello World!</h1>
-      
+      <MainLayout>
+        <Outlet></Outlet>
+      </MainLayout>
     </>
   )
 }
