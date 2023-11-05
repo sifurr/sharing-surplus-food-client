@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
-import Navbar from "../Navbar";
+import MainNavbar from "../MainNavbar";
 
-        
-        
-const MainLayout = ({children}) => {
+
+
+const MainLayout = ({ children }) => {
     return (
         <div>
-          <Navbar></Navbar>
-          {children}
+            <MainNavbar></MainNavbar>
+            {children}
         </div>
     );
 };

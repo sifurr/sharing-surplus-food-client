@@ -8,6 +8,7 @@ import Home from "../pages/Home";
 import AdminLayout from "../components/layout/AdminLayout";
 import Dashboard from "../pages/Dashboard";
 import Profile from "../pages/Profile";
+import AvailableFoods from "../pages/AvailableFoods";
 
 
 const routes = createBrowserRouter([
@@ -35,6 +36,10 @@ const routes = createBrowserRouter([
             {
                 path: 'register',
                 element: <Register></Register>
+            },
+            {
+                path: 'available-foods',
+                element: <AvailableFoods></AvailableFoods>
             }
         ]
     },
