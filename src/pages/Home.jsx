@@ -20,6 +20,11 @@ const Home = () => {
 
             {/* Featured Foods section */}
             <FeaturedFoods></FeaturedFoods>
+            
+            {/* Exra section 1 */}
+            <div><h2 className="text-3xl text-center bg-purple-700">Extra section - 1 </h2></div>
+            {/* Exra section 2 */}
+            <div><h2 className="text-3xl text-center bg-orange-300">Extra section - 2 </h2></div>            
 
         </Container>
     );

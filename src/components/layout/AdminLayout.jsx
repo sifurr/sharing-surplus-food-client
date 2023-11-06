@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Outlet } from "react-router-dom";
 import AdminNavbar from "../AdminNavbar";
+import { Toaster } from "react-hot-toast";
 
 
 const AdminLayout = () => {
@@ -14,6 +15,7 @@ const AdminLayout = () => {
                     <Outlet></Outlet>
                 </div>              
             </div>
+            <div><Toaster/></div>
 
         </div>
     );
