@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
@@ -18,23 +17,13 @@ const FoodDetails = () => {
     // console.log(foodId)
     console.log(user.email)
 
-
-
-    // const { data, isLoading } = useQuery({
-    //     queryKey: ['foodDetails'],
-    //     queryFn: async () => {
-    //         return await axios.get(`http://localhost:5000/api/v1/foods/${foodId}`)
-    //     }
-    // })
-
-
     const { _id, donorName,  pickupLocation,  foodImage, foodName, foodQuantity, expireDate, donorEmail } = data || {}
     const requestDate = new Date()
     // const donationAmount = 100;
     const foodOldId = _id;
 
 
-    console.log(data)
+    console.log("Food details", data)
 
     if (isLoading) {
         return <Spinner></Spinner>

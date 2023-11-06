@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // https://images.pexels.com/photos/6994993/pexels-photo-6994993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1
 
 const Food = ({ food }) => {
-    const { _id, foodName, foodImage, foodQuantity, pickupLocation, expiredDate, additionalNote, donorImage, donorName } = food || {}
+    const { _id, foodName, foodImage, foodQuantity, pickupLocation, expireDate, additionalNote, donorImage, donorName } = food || {}
     return (
         <div>
             <div className="card card-compact bg-base-100 shadow-xl">
@@ -19,7 +19,7 @@ const Food = ({ food }) => {
                     </div>
                     <p>Food Quantity: {foodQuantity} </p>
                     <p>Pickup location: {pickupLocation} </p>
-                    <p>Expire date: {expiredDate} </p>
+                    <p>Expire date: {expireDate} </p>
                     <p>Note: {additionalNote} </p>
                     <div className="card-actions justify-end">
                         <Link to={`/food-details/${_id}`} className="btn btn-primary">Details</Link>

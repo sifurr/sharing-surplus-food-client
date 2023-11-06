@@ -1,5 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from 'axios'
 import Spinner from "./Spinner";
 import Container from "./ui/Container";
 import Food from "./Food";
@@ -10,15 +8,6 @@ import useFoods from "../hooks/useFoods";
 const FeaturedFoods = () => {
 
     const { data, isLoading } = useFoods()
-
-    // const { data, isLoading } = useQuery({
-    //     queryKey: ['featuredFoods'],
-    //     queryFn: async () => {
-    //         return await axios.get(`http://localhost:5000/api/v1/foods`)
-    //     }
-    // })
-
-    // console.log("data: ", Object.keys(data.data[0]).join(','));
 
     if (isLoading) {
         return <Spinner></Spinner>

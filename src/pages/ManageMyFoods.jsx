@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import useFoods from "../hooks/useFoods";
 import useMyFood from "../hooks/useMyFoods";
+import Swal from 'sweetalert2'
 
 
 // const columns = [
@@ -80,6 +81,7 @@ const ManageMyFoods = () => {
 
 
     const handleDeleteById = id =>{
+       
         axios.delete(`http://localhost:5000/api/v1/user/cancel-food/${id}`)
         .then(res => {
             console.log("res from project", res);
@@ -167,7 +169,7 @@ const ManageMyFoods = () => {
                                     </th>
                                     <th>
                                         <button onClick={()=>handleDeleteById(foodItem._id)} className="btn btn-error btn-xs mb-1">Delete</button>
-                                        <button className="btn btn-primary btn-xs">Update</button>
+                                        <Link to={`/update-food/${foodItem._id}`} className="btn btn-primary btn-xs">Update</Link>
                                     </th>
                                 </tr>
                             )
