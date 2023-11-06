@@ -5,30 +5,34 @@ import Spinner from "../components/Spinner";
 import Container from "../components/ui/Container";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
+import useSingleFood from "../hooks/useSingleFood";
 
 
 
 
 const FoodDetails = () => {
     const { user } = useAuth()
-    const { foodId } = useParams()  
+    const { foodId } = useParams()
+    const {data, isLoading} = useSingleFood(foodId)
 
-     // console.log(foodId)
-     console.log(user.email)
+    // console.log(foodId)
+    console.log(user.email)
 
-     const { data, isLoading } = useQuery({
-         queryKey: ['foodDetails'],
-         queryFn: async () => {
-             return await axios.get(`http://localhost:5000/api/v1/foods/${foodId}`)
-         }        
-     })
- 
 
-    const { _id, foodName, foodImage, foodQuantity, pickupLocation, expireDate, donorName, donorEmail} = data.data || {}
+
+    // const { data, isLoading } = useQuery({
+    //     queryKey: ['foodDetails'],
+    //     queryFn: async () => {
+    //         return await axios.get(`http://localhost:5000/api/v1/foods/${foodId}`)
+    //     }
+    // })
+
+
+    const { _id, donorName,  pickupLocation,  foodImage, foodName, foodQuantity, expireDate, donorEmail } = data || {}
     const requestDate = new Date()
     // const donationAmount = 100;
     const foodOldId = _id;
-   
+
 
     console.log(data)
 
@@ -41,12 +45,12 @@ const FoodDetails = () => {
     const handleRequest = event => {
         // event.preventDefault()
         const userEmail = user.email;
-        const myDonationAmount = event.target.myDonationAmount.value;
-        const myNote = event.target.myNote.value;
+        const donationMoney = event.target.donationMoney.value;
+        const additionalNote = event.target.myNote.value;
         const requestDate = new Date()
         const foodOldId = _id;
-        const request = { foodOldId, foodName, foodImage, foodQuantity, pickupLocation, requestDate, expireDate, myNote, donorName, myDonationAmount, donorEmail, userEmail };
-       
+        const request = { foodName, foodImage, foodOldId,  donorEmail, donorName, userEmail, requestDate, pickupLocation, expireDate, additionalNote,  donationMoney };
+
 
         axios.post(`http://localhost:5000/api/v1/user/food-requests`, request)
             .then(res => {
@@ -61,17 +65,17 @@ const FoodDetails = () => {
 
         console.log(request);
 
-        
+
 
     }
 
-    
+
 
     return (
         <Container>
             <div className="flex justify-center">
                 <div className="card w-96 card-compact bg-base-100 shadow-xl">
-                    <figure><img className="w-96" src="https://images.pexels.com/photos/6994993/pexels-photo-6994993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Food" /></figure>
+                    <figure><img className="w-96" src={foodImage} alt="Food" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">{foodName} </h2>
                         <p>Donor Name: {donorName} </p>
@@ -159,21 +163,19 @@ const FoodDetails = () => {
                                                                                
                                         />
                                     </label>
-                                </div>
-
-                                {/* <div className="modal-action">
-                                    <button type="submit" htmlFor="my_modal_6" className="btn">Send Request</button>
-                                </div> */}
+                                </div>                              
 
                                 <div className=  "modal-action">
                                     <button type="submit" htmlFor="my_modal_6" className="btn">Send Request</button>
                                 </div>
 
                             </form>
-                        </div>
-                        {/* <div className="modal-action">
+
+                               {/* <div className="modal-action">
                             <label onClick={handleRequest} htmlFor="my_modal_6" className="btn">Send Request</label>
-                        </div> */}
+                         </div>  */}
+                        </div>
+                      
                     </div>
                 </div>
 

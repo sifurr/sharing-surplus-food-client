@@ -5,6 +5,7 @@ import Container from "../components/ui/Container";
 import Food from "../components/Food";
 import { useState } from "react";
 import SearchedFood from "../components/SearchedFood";
+import useFoods from "../hooks/useFoods";
 
 
 
@@ -12,14 +13,16 @@ const AvailableFoods = () => {
 
     const [searchQuery, setSearchQuery] = useState('')
 
+    const { data, isLoading} = useFoods()
 
 
-    const { data, isLoading } = useQuery({
-        queryKey: ['featuredFoods'],
-        queryFn: async () => {
-            return await axios.get(`http://localhost:5000/api/v1/foods`)
-        }
-    })
+
+    // const { data, isLoading } = useQuery({
+    //     queryKey: ['featuredFoods'],
+    //     queryFn: async () => {
+    //         return await axios.get(`http://localhost:5000/api/v1/foods`)
+    //     }
+    // })
 
     if (isLoading) {
         return <Spinner></Spinner>
@@ -52,7 +55,7 @@ const AvailableFoods = () => {
 
                 <div className="grid grid-cols-3 gap-4">
                     {
-                        data?.data?.map(food => <Food key={food._id} food={food}> </Food>)
+                        data?.map(food => <Food key={food._id} food={food}> </Food>)
                     }
                 </div>
                 {/* searched and filtered section */}

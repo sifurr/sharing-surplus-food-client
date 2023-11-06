@@ -4,16 +4,19 @@ import Spinner from "./Spinner";
 import Container from "./ui/Container";
 import Food from "./Food";
 import { Link } from "react-router-dom";
+import useFoods from "../hooks/useFoods";
 
 
 const FeaturedFoods = () => {
 
-    const { data, isLoading } = useQuery({
-        queryKey: ['featuredFoods'],
-        queryFn: async () => {
-            return await axios.get(`http://localhost:5000/api/v1/foods`)
-        }
-    })
+    const { data, isLoading } = useFoods()
+
+    // const { data, isLoading } = useQuery({
+    //     queryKey: ['featuredFoods'],
+    //     queryFn: async () => {
+    //         return await axios.get(`http://localhost:5000/api/v1/foods`)
+    //     }
+    // })
 
     // console.log("data: ", Object.keys(data.data[0]).join(','));
 
@@ -30,7 +33,7 @@ const FeaturedFoods = () => {
             </div>
             <div className="grid grid-cols-3 gap-4">
                 {
-                    data?.data?.sort(function (a, b) { return b.foodQuantity - a.foodQuantity }).slice(0, 6).map(food => <Food key={food._id} food={food}> </Food>)
+                    data?.sort(function (a, b) { return b.foodQuantity - a.foodQuantity }).slice(0, 6).map(food => <Food key={food._id} food={food}> </Food>)
                 }
             </div>
         </Container>

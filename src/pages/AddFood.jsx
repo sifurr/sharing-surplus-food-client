@@ -1,6 +1,6 @@
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 
@@ -16,7 +16,7 @@ const AddFood = () => {
         const foodImage = form.foodImage.value;
         const foodQuantity = form.foodQuantity.value;
         const pickupLocation = form.pickupLocation.value;
-        const expiredDate = form.expiredDate.value;
+        const expireDate = form.expireDate.value;
         const donorName = user?.displayName;
         const donorImage = user?.photoURL;
         const donorEmail = user?.email;
@@ -26,7 +26,7 @@ const AddFood = () => {
         const updatedDate = new Date();
        
 
-        const food = {foodName, foodImage, foodQuantity, pickupLocation, expiredDate, donorName, donorImage, donorEmail, additionalNote,foodStatus, createdDate, updatedDate};
+        const food = {foodName, foodImage, foodQuantity, pickupLocation, expireDate, donorName, donorImage, donorEmail, additionalNote,foodStatus, createdDate, updatedDate};
 
         console.log(food)
 
@@ -74,7 +74,7 @@ const AddFood = () => {
                     <div className="form-control">
                         <label className="input-group ">
                             <span>Expire Date</span>
-                            <input type="date" name="expiredDate" placeholder="Type here" className="input input-bordered w-full" />
+                            <input type="date" name="expireDate" placeholder="Type here" className="input input-bordered w-full" />
                         </label>
                     </div>
                     <div className="form-control">
@@ -105,9 +105,9 @@ const AddFood = () => {
                         <label className="input-group ">
                             <span>Food Status</span>
                             <select name="foodStatus" className="select select-bordered w-full max-w-xs">                                
-                                <option selected>Available</option>
-                                <option>Pending</option>
-                                <option>Delivered</option>
+                                <option selected value={"available"}>Available</option>
+                                <option value={"pending"}>Pending</option>
+                                <option value={"delivered"}>Delivered</option>
                             </select>
                         </label>
                     </div>
