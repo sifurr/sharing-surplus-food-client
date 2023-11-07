@@ -1,31 +1,34 @@
 import { Link, useParams } from "react-router-dom";
 import useFoodRequestByOthers from "../hooks/useFoodRequestByOthers";
 import Spinner from "../components/Spinner";
-import { useState } from "react";
+import useSingleFood from "../hooks/useSingleFood";
 
 
 
 const ManageSingleFood = () => {
     const { id } = useParams()
-    const [statusToggler, setStatusToggler] = useState(false);
     console.log(id)
-    const { data, isLoading } = useFoodRequestByOthers(id);
+    const { data: foodMain } = useSingleFood(id);
+    const { data, isLoading } = useFoodRequestByOthers(id);    
+
     console.log("data from Manage single food", data)
     // console.log("data from Manage single food", requesterName, requesterEmail, requesterImage)
 
     if (isLoading) {
         return <Spinner></Spinner>
     }
-    // const {requesterName, requesterEmail, requesterImage, requestDate} = data || {}    
-
-    const toggleFoodStatus = () => {
-        setStatusToggler(!statusToggler)
-    }
-
 
     return (
         <div>
             <h2 className='text-3xl text-center'>Manage Single Food</h2>
+            <div className="text-center my-4 space-y-2">
+                <img className="w-40 mx-auto border-8 rounded-lg border-orange-400" src={foodMain?.foodImage} alt="" />
+                <h2 className="text-2xl font-bold">{foodMain?.foodName}</h2>
+                <h3 className="text-xl font-bold capitalize">Food Status: {foodMain?.foodStatus}</h3>
+                <Link to={`/update-food-status/${id}`}
+                    className="btn btn-sm btn-warning">Change Food Status
+                </Link>
+            </div>
             <div>
                 {
                     data.length == 0 ? <h2 className="text-center text-1xl font-bold">No requests for this food at present!</h2>
@@ -43,13 +46,6 @@ const ManageSingleFood = () => {
 
                                         <p>Request Date:</p>
                                         <small>{request.requestDate}</small>
-
-                                        <p>Status: {request.foodStatus}
-                                            <span className="mt-2">
-                                                <Link                                                  to={`/update-food-status/${id}`}
-                                                    className="btn btn-sm">Change Status
-                                                </Link>
-                                            </span> </p>
                                     </div>
                                 </div>
                             </div>
