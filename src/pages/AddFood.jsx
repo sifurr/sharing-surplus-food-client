@@ -28,7 +28,7 @@ const AddFood = () => {
 
         const food = {foodName, foodImage, foodQuantity, pickupLocation, expireDate, donorName, donorImage, donorEmail, additionalNote,foodStatus, createdDate, updatedDate};
 
-        console.log(food)
+        // console.log(food)
 
         axios.post(`http://localhost:5000/api/v1/user/create-food`, food)
         .then(res => {
