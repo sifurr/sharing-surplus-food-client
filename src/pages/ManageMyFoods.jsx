@@ -111,21 +111,6 @@ const ManageMyFoods = () => {
 
         console.log(id)
     }
-    // const handleDeleteById = id =>{
-
-    //     axios.delete(`http://localhost:5000/api/v1/user/cancel-food/${id}`)
-    //     .then(res => {
-    //         console.log("res from project", res);
-    //         if(res?.data?.deletedCount > 0){
-    //             toast.success("Deleted successfully");
-    //             refetch();
-    //         }
-    //     })
-
-    //     console.log(id)
-    // }
-
-
 
 
 
@@ -164,6 +149,7 @@ const ManageMyFoods = () => {
                             <th>Food Name</th>
                             <th>Food Image</th>
                             <th>Food Quantity</th>
+                            <th>Donor Name</th>
                             <th>Pickup Location</th>
                             <th>Expire Date</th>
                             <th>Additional Notes</th>
@@ -190,13 +176,13 @@ const ManageMyFoods = () => {
                                         </div>
                                     </td>
                                     <td>{foodItem.foodQuantity}</td>
+                                    <td>{foodItem.donorName}</td>
                                     <td>{foodItem.pickupLocation}</td>
-                                    <td>{foodItem.expiredDate}</td>
+                                    <td>{foodItem.expireDate}</td>
                                     <td>{foodItem.additionalNote}</td>
                                     <td>{foodItem.foodStatus}</td>
                                     <th>
                                         <Link to={`/manage-single-food/${foodItem._id}`} className="btn btn-info btn-xs mb-1">Mange</Link>
-
                                     </th>
                                     <th>
                                         <button onClick={() => handleDeleteById(foodItem._id)} className="btn btn-error btn-xs mb-1">Delete</button>

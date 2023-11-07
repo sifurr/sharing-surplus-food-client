@@ -22,7 +22,7 @@ const FoodDetails = () => {
     // console.log(id)
     // console.log(user.email)
 
-    const { _id, donorName, pickupLocation, foodImage, foodName, foodQuantity, expireDate, donorEmail } = data || {}
+    const { _id, donorName, pickupLocation, foodImage, foodName, foodQuantity, expireDate, donorEmail, foodStatus } = data || {}
     const requestDate = new Date()
     // const donationAmount = 100;
     const foodOldId = _id;
@@ -45,7 +45,7 @@ const FoodDetails = () => {
         const requestDate = moment().format("h:mm:ss a, D-M-YYYY");
         const donationMoney = event.target.donationMoney.value;
         const additionalNote = event.target.additionalNote.value;
-        const request = { requesterName, requesterEmail, requesterImage, requestDate, foodId, foodName, foodImage, donorEmail, donorName, pickupLocation, expireDate, additionalNote, donationMoney };
+        const request = { requesterName, requesterEmail, requesterImage, requestDate, foodId, foodStatus, foodName, foodImage, donorEmail, donorName, pickupLocation, expireDate, additionalNote, donationMoney };
 
         axios.post(`http://localhost:5000/api/v1/user/food-requests`, request)
             .then(res => {
