@@ -10,12 +10,12 @@ const UpdateFood = () => {
     const { id } = useParams()
     const { user } = useAuth()
     // const navigate = useNavigate();
-    console.log(id);
+    // console.log(id);
 
     const { data, isLoading, refetch } = useSingleFood(id)
     const { donorName, pickupLocation, foodImage, foodName, foodQuantity, expireDate, donorEmail, donorImage, additionalNote, foodStatus } = data || {}
 
-    console.log("Data form update: ", data)
+    // console.log("Data form update: ", data)
 
     if (isLoading) {
         return <Spinner></Spinner>

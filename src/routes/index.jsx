@@ -15,16 +15,17 @@ import MyFoodRequests from "../pages/MyFoodRequests";
 import FoodDetails from "../pages/FoodDetails";
 import AddFood from "../pages/AddFood";
 import UpdateFood from "../pages/UpdateFood";
+import ManageSingleFood from "../pages/ManageSingleFood";
 
 
 const routes = createBrowserRouter([
     {
         path: '/',
         element: <App></App>,
-        errorElement:<div>404</div> ,
+        errorElement: <div>404</div>,
         children: [
             {
-                index:true,
+                index: true,
                 element: <Home></Home>
             },
             {
@@ -48,42 +49,64 @@ const routes = createBrowserRouter([
                 element: <AvailableFoods></AvailableFoods>
             },
             {
-                path: 'food-details/:foodId',
+                path: 'food-details/:id',
                 element: <PrivateRoute><FoodDetails></FoodDetails></PrivateRoute>
             },
             {
                 path: 'update-food/:id',
                 element: <PrivateRoute><UpdateFood></UpdateFood> </PrivateRoute>
             },
-        ]
-    },
-    {
-        path: '/user',
-        element: <PrivateRoute><AdminLayout></AdminLayout></PrivateRoute>,
-        children: [
-            {
-                index: true,
-                element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
-            },
-            {
-                path: 'profile',
-                element: <PrivateRoute><Profile></Profile></PrivateRoute>
-            },
             {
                 path: 'add-food',
                 element: <PrivateRoute><AddFood></AddFood> </PrivateRoute>
             },
             {
+                path: 'profile',
+                element: <PrivateRoute><Profile></Profile></PrivateRoute>
+            },
+
+            {
                 path: 'manage-my-food',
                 element: <PrivateRoute><ManageMyFoods></ManageMyFoods> </PrivateRoute>
+            },
+            {
+                path: 'manage-single-food/:id',
+                element: <PrivateRoute><ManageSingleFood></ManageSingleFood> </PrivateRoute>
             },
             {
                 path: 'my-food-requests',
                 element: <PrivateRoute> <MyFoodRequests></MyFoodRequests> </PrivateRoute>
             },
-           
         ]
-    }
+    },
+    // {
+    //     path: '/user',
+    //     element: <PrivateRoute><AdminLayout></AdminLayout></PrivateRoute>,
+    //     children: [
+    //         // {
+    //         //     index: true,
+    //         //     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
+    //         // },
+    // {
+    //     path: 'add-food',
+    //     element: <PrivateRoute><AddFood></AddFood> </PrivateRoute>
+    // },
+    //         // {
+    //         //     path: 'profile',
+    //         //     element: <PrivateRoute><Profile></Profile></PrivateRoute>
+    //         // },
+
+    //         // {
+    //         //     path: 'manage-my-food',
+    //         //     element: <PrivateRoute><ManageMyFoods></ManageMyFoods> </PrivateRoute>
+    //         // },
+    //         // {
+    //         //     path: 'my-food-requests',
+    //         //     element: <PrivateRoute> <MyFoodRequests></MyFoodRequests> </PrivateRoute>
+    //         // },
+
+    //     ]
+    // }
 ])
 
 export default routes;

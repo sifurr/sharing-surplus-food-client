@@ -71,7 +71,7 @@ import Swal from 'sweetalert2'
 
 
 const ManageMyFoods = () => {
-    
+
     const { data, isLoading, refetch } = useMyFood()
 
 
@@ -80,19 +80,50 @@ const ManageMyFoods = () => {
     }
 
 
-    const handleDeleteById = id =>{
-       
-        axios.delete(`http://localhost:5000/api/v1/user/cancel-food/${id}`)
-        .then(res => {
-            console.log("res from project", res);
-            if(res?.data?.deletedCount > 0){
-                toast.success("Deleted successfully");
-                refetch();
+    const handleDeleteById = id => {
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axios.delete(`http://localhost:5000/api/v1/user/cancel-food/${id}`)
+                    .then(res => {
+                        console.log("res from project", res);
+                        if (res?.data?.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });                            
+                            refetch();
+                        }
+                    })
+
             }
-        })
+        });
 
         console.log(id)
     }
+    // const handleDeleteById = id =>{
+
+    //     axios.delete(`http://localhost:5000/api/v1/user/cancel-food/${id}`)
+    //     .then(res => {
+    //         console.log("res from project", res);
+    //         if(res?.data?.deletedCount > 0){
+    //             toast.success("Deleted successfully");
+    //             refetch();
+    //         }
+    //     })
+
+    //     console.log(id)
+    // }
 
 
 
@@ -119,9 +150,9 @@ const ManageMyFoods = () => {
 
 
     // console.log("from manage my food",data)
-    
-    
-    
+
+
+
     return (
         <Container>
             <h2 className='text-3xl text-center'>ManageMyFoods</h2>
@@ -164,11 +195,11 @@ const ManageMyFoods = () => {
                                     <td>{foodItem.additionalNote}</td>
                                     <td>{foodItem.foodStatus}</td>
                                     <th>
-                                        <Link to={'/'} className="btn btn-info btn-xs mb-1">Mange</Link>
+                                        <Link to={`/manage-single-food/${foodItem._id}`} className="btn btn-info btn-xs mb-1">Mange</Link>
 
                                     </th>
                                     <th>
-                                        <button onClick={()=>handleDeleteById(foodItem._id)} className="btn btn-error btn-xs mb-1">Delete</button>
+                                        <button onClick={() => handleDeleteById(foodItem._id)} className="btn btn-error btn-xs mb-1">Delete</button>
                                         <Link to={`/update-food/${foodItem._id}`} className="btn btn-primary btn-xs">Update</Link>
                                     </th>
                                 </tr>

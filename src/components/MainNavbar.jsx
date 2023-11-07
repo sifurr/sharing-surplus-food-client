@@ -15,7 +15,14 @@ const MainNavbar = () => {
       <li><NavLink to={'/available-foods'}>Available Foods</NavLink></li>
       {
         user?.email &&
-        <li><NavLink to={'/user'}>Dashboard</NavLink></li>
+        <>
+          <li><NavLink to={'add-food'}>Add Food</NavLink> </li>
+          <li><NavLink to={'manage-my-food'} >Manage My Foods </NavLink> </li>
+          <li><NavLink to={'my-food-requests'} >My Food Request </NavLink> </li>
+          <li><NavLink to={'profile'} >My Profile</NavLink> </li>
+          
+
+        </>
       }
     </>
 

@@ -5,17 +5,20 @@ import Container from "../components/ui/Container";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
 import useSingleFood from "../hooks/useSingleFood";
+import moment from 'moment'
+import { useState } from "react";
 
 
 
 
 const FoodDetails = () => {
     const { user } = useAuth()
-    const { foodId } = useParams()
-    const {data, isLoading} = useSingleFood(foodId)
+    const { id } = useParams()
+    const {data, isLoading} = useSingleFood(id)
+    const [isModelClose, setIsModalClose] = useState(false)
 
-    // console.log(foodId)
-    console.log(user.email)
+    // console.log(id)
+    // console.log(user.email)
 
     const { _id, donorName,  pickupLocation,  foodImage, foodName, foodQuantity, expireDate, donorEmail } = data || {}
     const requestDate = new Date()
@@ -23,7 +26,7 @@ const FoodDetails = () => {
     const foodOldId = _id;
 
 
-    console.log("Food details", data)
+    // console.log("Food details", data)
 
     if (isLoading) {
         return <Spinner></Spinner>
@@ -32,13 +35,15 @@ const FoodDetails = () => {
 
 
     const handleRequest = event => {
-        // event.preventDefault()
-        const userEmail = user.email;
+        event.preventDefault()
+        const requesterName = user.email;
+        const requesterEmail = user.email;
+        const requesterImage = user.email;        
+        const foodId = _id;
+        const requestDate = moment().format("h:mm:ss a, D-M-YYYY");
         const donationMoney = event.target.donationMoney.value;
-        const additionalNote = event.target.myNote.value;
-        const requestDate = new Date()
-        const foodOldId = _id;
-        const request = { foodName, foodImage, foodOldId,  donorEmail, donorName, userEmail, requestDate, pickupLocation, expireDate, additionalNote,  donationMoney };
+        const additionalNote = event.target.additionalNote.value;
+        const request = {requesterName, requesterEmail, requesterImage, requestDate, foodId, foodName, foodImage, donorEmail, donorName, pickupLocation, expireDate, additionalNote, donationMoney };
 
 
         axios.post(`http://localhost:5000/api/v1/user/food-requests`, request)
@@ -46,13 +51,11 @@ const FoodDetails = () => {
                 console.log("food request: ",res.data)
                 if (res.data.insertedId) {
                     toast.success("You requested successfully")
+                    setIsModalClose(true);
                 }
-            })   
+            })           
 
-
-        toast.success("You requested successfully")
-
-        console.log(request);
+        // console.log(request);
 
 
 
@@ -80,7 +83,8 @@ const FoodDetails = () => {
 
             {/* Put this part before </body> tag */}
             <input type="checkbox" id="my_modal_6" className="modal-toggle" />
-            <div className="modal">
+            {/* <div className="modal"> */}
+            <div className={`${isModelClose ? "hidden" : "modal"}`}>
                 <div className="modal-box">
                     <div>
                         <div>
@@ -142,13 +146,13 @@ const FoodDetails = () => {
                                 <div className="form-control">
                                     <label className="input-group input-group-xs">
                                         <span>Notes</span>
-                                        <input type="text" name="myNote" defaultValue={''} placeholder="Type here" className="input input-bordered input-md" />
+                                        <input type="text" name="additionalNote" defaultValue={''} placeholder="Type here" className="input input-bordered input-md" />
                                     </label>
                                 </div>
                                 <div className="form-control">
                                     <label className="input-group input-group-xs">
                                         <span>Donation Amount</span>
-                                        <input type="text" name="myDonationAmount" defaultValue={''} placeholder="Type here" className="input input-bordered input-xs"
+                                        <input type="text" name="donationMoney" defaultValue={''} placeholder="Type here" className="input input-bordered input-xs"
                                                                                
                                         />
                                     </label>
