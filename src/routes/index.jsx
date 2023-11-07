@@ -17,13 +17,14 @@ import AddFood from "../pages/AddFood";
 import UpdateFood from "../pages/UpdateFood";
 import ManageSingleFood from "../pages/ManageSingleFood";
 import UpdateFoodStatus from "../pages/UpdateFoodStatus";
+import ErrorPage from "../pages/ErrorPage";
 
 
 const routes = createBrowserRouter([
     {
         path: '/',
         element: <App></App>,
-        errorElement: <div>404</div>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 index: true,

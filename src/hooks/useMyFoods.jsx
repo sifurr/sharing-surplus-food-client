@@ -10,7 +10,7 @@ const useMyFood = () => {
 
     const { data, isLoading, isFetching, refetch } = useQuery({
         enabled: !!email,
-        queryKey: ['cart'],
+        queryKey: ['myFoods'],
         queryFn: async () => {
             const res = await axios.get(`http://localhost:5000/api/v1/user/foods?email=${email}`);
             return res.data;

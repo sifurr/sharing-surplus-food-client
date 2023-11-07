@@ -63,13 +63,14 @@ const MyFoodRequests = () => {
                             <div key={requestedFood._id} className="card bg-base-100 shadow-xl">
                                 <div className="card-body">
                                     <h2 className="card-title">Donor Name: {requestedFood.donorName} </h2>
+                                    <p><b>Pickup Location:</b> {requestedFood._id} </p>
                                     <p><b>Pickup Location:</b> {requestedFood.pickupLocation} </p>
                                     <p><strong>Expire Date:</strong> {requestedFood.expireDate} </p>
                                     <p><b>Request Date:</b> {requestedFood.requestDate} </p>
                                     <p><b>Donation Money:</b> {requestedFood.donationMoney} </p>
                                     <p><strong>Food Status:</strong> {requestedFood.foodStatus} </p>
                                     <div className="card-actions justify-end">
-                                        <button onClick={() => handleCancelRequest(requestedFood._id)} className={`${requestedFood.foodStatus !== "available" ? "disabled" : "btn btn-error"}`}>Cancel Request</button>
+                                        <button onClick={() => handleCancelRequest(requestedFood._id)} className="btn btn-error">Cancel Request</button>
                                     </div>
                                 </div>
                             </div>

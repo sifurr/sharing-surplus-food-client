@@ -3,26 +3,20 @@ import axios from "axios";
 import Spinner from "../components/Spinner";
 import Container from "../components/ui/Container";
 import Food from "../components/Food";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchedFood from "../components/SearchedFood";
 import useFoods from "../hooks/useFoods";
+import useSearchedFoods from "../hooks/useSearchedFoods";
 
 
 
 const AvailableFoods = () => {
 
-    const [searchQuery, setSearchQuery] = useState('')
+    const [searchQuery, setSearchQuery] = useState(' ')
+    const { data, isLoading } = useFoods()
+    const [searchedFoods, setSearchedFoods] = useState([])
+    console.log("from search string: ", searchQuery);
 
-    const { data, isLoading} = useFoods()
-
-
-
-    // const { data, isLoading } = useQuery({
-    //     queryKey: ['featuredFoods'],
-    //     queryFn: async () => {
-    //         return await axios.get(`http://localhost:5000/api/v1/foods`)
-    //     }
-    // })
 
     if (isLoading) {
         return <Spinner></Spinner>
@@ -30,9 +24,16 @@ const AvailableFoods = () => {
 
     const handleSearchButton = event => {
         event.preventDefault();
-        setSearchQuery(event.target.search.value);
-    }
+        const form = event.target;
+        const searchText = form.search.value
+        setSearchQuery(searchText);
 
+        const filteredData = data.filter(foodInfo => foodInfo.foodName.toLowerCase().includes(searchText.toLowerCase()))
+        setSearchedFoods(filteredData);
+        console.log("Filtered data: ",filteredData);
+
+
+    }
 
     return (
         <div>
@@ -44,7 +45,7 @@ const AvailableFoods = () => {
                     <form onSubmit={handleSearchButton} className="join">
                         <div>
                             <div>
-                                <input name="search" className="input input-bordered join-item" placeholder="Search" />
+                                <input type="text" name="search" className="input input-bordered join-item" placeholder="Search" />
                             </div>
                         </div>
                         <div className="indicator">
@@ -52,17 +53,15 @@ const AvailableFoods = () => {
                         </div>
                     </form>
                 </div>
+               
 
                 <div className="grid grid-cols-3 gap-4">
                     {
-                        data?.map(food => <Food key={food._id} food={food}> </Food>)
-                    }
-                </div>
-                {/* searched and filtered section */}
-                <div>
-                    {
-                      <SearchedFood searchQuery={searchQuery}></SearchedFood>
-                    }
+                       searchedFoods?.length === 0 ? data?.map(food => <Food key={food._id} food={food}> </Food>)
+                     : searchedFoods?.map(food => <Food key={food._id} food={food}> </Food>)
+                      
+                    } 
+
                 </div>
             </Container>
         </div>
