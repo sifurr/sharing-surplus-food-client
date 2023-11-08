@@ -13,7 +13,7 @@ const Home = () => {
     const [sliderImages, setGalleryImages] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/v1/gallery')
+        fetch('https://b8a11-server-side-sifurr.vercel.app/api/v1/gallery')
             .then(res => res.json())
             .then(data => {
                 // console.log("from gallery: ",data)
@@ -24,13 +24,13 @@ const Home = () => {
     return (
         <Container>
             <PageDynamicTitle pageTitle="Home" ></PageDynamicTitle>
-            {/* Hero section */}           
+            {/* Hero section */}
             <div className="lg:h-56 sm:h-64 xl:h-80 2xl:h-96">
                 <Carousel>
                     {
-                        sliderImages.slice(0,(Math.random() * 5)).map(image =>
+                        sliderImages.slice(0, (Math.random() * 5)).map(image =>
                             <div key={image._id}>
-                                <img src={image.src} alt="..." />                              
+                                <img src={image.src} alt="..." />
                             </div>
 
                         )
@@ -39,7 +39,7 @@ const Home = () => {
                 </Carousel>
             </div>
             <div className="text-center">
-                <div className="">                    
+                <div className="">
                     <div>
                         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">Donate Food</h1>
                         <p className="py-3 md: py:4 lg:py-6">Share your surplus for the community</p>

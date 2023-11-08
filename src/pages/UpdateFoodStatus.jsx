@@ -14,8 +14,8 @@ const UpdateFoodStatus = () => {
     const navigate = useNavigate();
     // console.log(id);
 
-    const { data, isLoading} = useSingleFood(id)
-    const {  foodStatus } = data || {}
+    const { data, isLoading } = useSingleFood(id)
+    const { foodStatus } = data || {}
 
     // console.log("Data form update: ", data)
 
@@ -25,16 +25,16 @@ const UpdateFoodStatus = () => {
 
     const handleFoodStatusUpdate = event => {
         event.preventDefault();
-        const form = event.target;    
-        const foodStatus = form.foodStatus.value;   
-        const foodInfo = {  foodStatus };
+        const form = event.target;
+        const foodStatus = form.foodStatus.value;
+        const foodInfo = { foodStatus };
         // console.log(project);
 
-        axios.patch(`http://localhost:5000/api/v1/user/update-food-status/${id}`, foodInfo)
+        axios.patch(`https://b8a11-server-side-sifurr.vercel.app/api/v1/user/update-food-status/${id}`, foodInfo)
             .then(res => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {
-                    toast.success("Status updated successfully!")                    
+                    toast.success("Status updated successfully!")
                     navigate(location?.state ? location.state : '/')
                 }
             })
@@ -45,7 +45,7 @@ const UpdateFoodStatus = () => {
             <PageDynamicTitle pageTitle="Update Food Status" ></PageDynamicTitle>
             <h2 className='text-3xl text-center'>Update Food Status</h2>
             <div className="w-1/3 mx-auto my-10">
-                <form onSubmit={handleFoodStatusUpdate} className="space-y-2">                    
+                <form onSubmit={handleFoodStatusUpdate} className="space-y-2">
                     <div className="form-control">
                         <label className="input-group ">
                             <span>Food Status</span>

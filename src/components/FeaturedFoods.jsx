@@ -20,7 +20,7 @@ const FeaturedFoods = () => {
             <div className="flex justify-center my-3">
                 <Link to={'/available-foods'} className="btn btn-sm md btn-primary">Show All</Link>
             </div>
-            <div className="grid gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {
                     data?.sort(function (a, b) { return b.foodQuantity - a.foodQuantity }).slice(0, 6).map(food => <Food key={food._id} food={food}> </Food>)
                 }

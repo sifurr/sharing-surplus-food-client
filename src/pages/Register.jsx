@@ -52,9 +52,9 @@ const Register = () => {
                         setErrorMsg(err.message)
                         console.log(err)
                     })
-                setLoading(false)           
-                
-                handleLogout();                
+                setLoading(false)
+
+                handleLogout();
                 navigate('/login')
             })
             .catch(err => {
@@ -65,11 +65,11 @@ const Register = () => {
 
     const handleLogout = () => {
         logout()
-          .then(() => {
-            toast.success("Registration successful. Now you can login")
-          })
-          .catch(err => console.log(err))
-      }
+            .then(() => {
+                toast.success("Registration successful. Now you can login")
+            })
+            .catch(err => console.log(err))
+    }
 
     const handleGoogleLogin = () => {
         googleLogin()
@@ -78,15 +78,15 @@ const Register = () => {
                 // console.log("from google sign-in",email)
                 const user = { email };
 
-                axios.post(`http://localhost:5000/api/v1/auth/access-token`, user, { withCredentials: true })
+                axios.post(`https://b8a11-server-side-sifurr.vercel.app/api/v1/auth/access-token`, user, { withCredentials: true })
                     .then(res => {
                         // console.log(res.data)
-                        if (res.data.success) {                            
+                        if (res.data.success) {
                             toast.success("Logged in successfully")
                             setErrorMsg('')
                             navigate(location?.state ? location.state : '/')
                         }
-                    })              
+                    })
             })
             .catch(err => {
                 setErrorMsg(err.message)

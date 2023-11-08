@@ -34,13 +34,13 @@ const UpdateFood = () => {
         const donorEmail = form.donorEmail.value;
         const donorImage = form.donorImage.value;
         const additionalNote = form.additionalNote.value;
-        const foodStatus = form.foodStatus.value;            
+        const foodStatus = form.foodStatus.value;
 
         const updatedDate = moment().format("h:mm:ss a, D-M-YYYY");
         const foodInfo = { foodImage, foodName, foodQuantity, pickupLocation, expireDate, donorName, donorEmail, donorImage, additionalNote, foodStatus, updatedDate };
         // console.log(project);
 
-        axios.patch(`http://localhost:5000/api/v1/user/update-food/${id}`, foodInfo)
+        axios.patch(`https://b8a11-server-side-sifurr.vercel.app/api/v1/user/update-food/${id}`, foodInfo)
             .then(res => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {

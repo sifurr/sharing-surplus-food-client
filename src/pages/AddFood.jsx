@@ -7,7 +7,7 @@ import PageDynamicTitle from "../components/PageDynamicTitle";
 
 const AddFood = () => {
 
-    const {user} = useAuth()
+    const { user } = useAuth()
     const navigate = useNavigate()
 
     const handleSubmit = event => {
@@ -25,21 +25,21 @@ const AddFood = () => {
         const foodStatus = form.foodStatus.value;
         const createdDate = new Date();
         const updatedDate = new Date();
-       
 
-        const food = {foodName, foodImage, foodQuantity, pickupLocation, expireDate, donorName, donorImage, donorEmail, additionalNote,foodStatus, createdDate, updatedDate};
+
+        const food = { foodName, foodImage, foodQuantity, pickupLocation, expireDate, donorName, donorImage, donorEmail, additionalNote, foodStatus, createdDate, updatedDate };
 
         // console.log(food)
 
-        axios.post(`http://localhost:5000/api/v1/user/create-food`, food)
-        .then(res => {
-            // console.log(res.data)
-            if(res.data.insertedId){                
-                // toast.success("Food added successfully")
-                form.reset();
-                navigate('/available-foods')
-            }
-        })
+        axios.post(`https://b8a11-server-side-sifurr.vercel.app/api/v1/user/create-food`, food)
+            .then(res => {
+                // console.log(res.data)
+                if (res.data.insertedId) {
+                    // toast.success("Food added successfully")
+                    form.reset();
+                    navigate('/available-foods')
+                }
+            })
 
 
     }
@@ -106,7 +106,7 @@ const AddFood = () => {
                     <div className="form-control">
                         <label className="input-group ">
                             <span>Food Status</span>
-                            <select name="foodStatus" className="select select-bordered w-full max-w-xs">                                
+                            <select name="foodStatus" className="select select-bordered w-full max-w-xs">
                                 <option selected value={"available"}>Available</option>
                                 <option value={"pending"}>Pending</option>
                                 <option value={"delivered"}>Delivered</option>

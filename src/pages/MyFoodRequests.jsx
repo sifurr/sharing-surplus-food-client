@@ -29,7 +29,7 @@ const MyFoodRequests = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:5000/api/v1/user/cancel-food-request/${id}`)
+                axios.delete(`https://b8a11-server-side-sifurr.vercel.app/api/v1/user/cancel-food-request/${id}`)
                     .then(res => {
                         console.log("res from project", res);
                         if (res?.data?.deletedCount > 0) {
@@ -59,24 +59,24 @@ const MyFoodRequests = () => {
 
 
             <div className="grid grid-cols-3 gap-4 my-5">
-                {             
-                    
-                     data.length > 0 && data.map(requestedFood =>
-                            <div key={requestedFood?._id} className="card bg-base-100 shadow-xl">
-                                <div className="card-body">
-                                    <h2 className="card-title">Donor Name: {requestedFood?.donorName} </h2>
-                                    <p><b>Pickup Location:</b> {requestedFood?._id} </p>
-                                    <p><b>Pickup Location:</b> {requestedFood?.pickupLocation} </p>
-                                    <p><strong>Expire Date:</strong> {requestedFood?.expireDate} </p>
-                                    <p><b>Request Date:</b> {requestedFood?.requestDate} </p>
-                                    <p><b>Donation Money:</b> {requestedFood?.donationMoney === '' ? <p>You haven't donated yet.</p> : requestedFood.donationMoney} </p>
-                                    <p><strong>Food Status:</strong> {requestedFood?.foodStatus} </p>
-                                    <div className="card-actions justify-end">
-                                        <button onClick={() => handleCancelRequest(requestedFood?._id)} className="btn btn-error">Cancel Request</button>
-                                    </div>
+                {
+
+                    data.length > 0 && data.map(requestedFood =>
+                        <div key={requestedFood?._id} className="card bg-base-100 shadow-xl">
+                            <div className="card-body">
+                                <h2 className="card-title">Donor Name: {requestedFood?.donorName} </h2>
+                                <p><b>Pickup Location:</b> {requestedFood?._id} </p>
+                                <p><b>Pickup Location:</b> {requestedFood?.pickupLocation} </p>
+                                <p><strong>Expire Date:</strong> {requestedFood?.expireDate} </p>
+                                <p><b>Request Date:</b> {requestedFood?.requestDate} </p>
+                                <p><b>Donation Money:</b> {requestedFood?.donationMoney === '' ? <p>You haven't donated yet.</p> : requestedFood.donationMoney} </p>
+                                <p><strong>Food Status:</strong> {requestedFood?.foodStatus} </p>
+                                <div className="card-actions justify-end">
+                                    <button onClick={() => handleCancelRequest(requestedFood?._id)} className="btn btn-error">Cancel Request</button>
                                 </div>
                             </div>
-                        )
+                        </div>
+                    )
                 }
             </div>
 

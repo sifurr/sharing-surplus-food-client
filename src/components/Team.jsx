@@ -6,17 +6,17 @@ import { useEffect, useState } from "react";
 
 
 
-const Team = () => {    
+const Team = () => {
     const [fullTeam, setFullTeam] = useState([])
 
-    useEffect(()=>{
-        fetch('http://localhost:5000/api/v1/team')
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            setFullTeam(data)
-        })
-    },[])
+    useEffect(() => {
+        fetch('https://b8a11-server-side-sifurr.vercel.app/api/v1/team')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setFullTeam(data)
+            })
+    }, [])
 
     return (
         <Container>

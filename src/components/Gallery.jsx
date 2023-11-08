@@ -2,18 +2,18 @@ import PhotoAlbum from "react-photo-album";
 import Container from "./ui/Container";
 import { useEffect, useState } from "react";
 
- 
+
 const Gallery = () => {
 
     const [galleryImages, setGalleryImages] = useState([])
 
-    useEffect(()=>{
-        fetch('http://localhost:5000/api/v1/gallery')
-        .then(res => res.json())
-        .then(data => {
-            console.log("from gallery: ",data)
-            setGalleryImages(data);
-        })
+    useEffect(() => {
+        fetch('https://b8a11-server-side-sifurr.vercel.app/api/v1/gallery')
+            .then(res => res.json())
+            .then(data => {
+                console.log("from gallery: ", data)
+                setGalleryImages(data);
+            })
     }, [])
 
     return (

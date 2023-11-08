@@ -74,7 +74,7 @@ const ManageMyFoods = () => {
             accessorKey: "_id",
             cell: row => {
                 // console.log("from value", row)
-                
+
                 return <Link to={`/manage-single-food/${row.getValue("_id")}`} className="btn btn-info btn-xs mb-1">Mange</Link>
             }
 
@@ -124,7 +124,7 @@ const ManageMyFoods = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:5000/api/v1/user/cancel-food/${id}`)
+                axios.delete(`https://b8a11-server-side-sifurr.vercel.app/api/v1/user/cancel-food/${id}`)
                     .then(res => {
                         console.log("res from project", res);
                         if (res?.data?.deletedCount > 0) {

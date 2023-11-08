@@ -48,21 +48,21 @@ const FoodDetails = () => {
         const additionalNote = event.target.additionalNote.value;
         const request = { requesterName, requesterEmail, requesterImage, requestDate, foodId, foodStatus, foodName, foodImage, donorEmail, donorName, pickupLocation, expireDate, additionalNote, donationMoney };
 
-        axios.post(`http://localhost:5000/api/v1/user/food-requests`, request)
+        axios.post(`https://b8a11-server-side-sifurr.vercel.app/api/v1/user/food-requests`, request)
             .then(res => {
                 console.log("food request: ", res.data)
                 if (res.data.insertedId) {
-                    toast.success("You requested successfully")   
+                    toast.success("You requested successfully")
                 }
                 setIsModalClose(true)
 
             })
-            navigate(`/available-foods`)
+        navigate(`/available-foods`)
     }
 
     const handleCloseButton = () => {
         setIsCloseButtonClicked(true);
-        setIsModalClose(false)     
+        setIsModalClose(false)
         navigate(`/available-foods`)
     }
 
@@ -89,7 +89,7 @@ const FoodDetails = () => {
             {/* Put this part before </body> tag */}
             <input type="checkbox" id="my_modal_6" className="modal-toggle" />
             {/* <div className="modal"> */}
-            <div className={`${isModelClose|| isCloseButtonClicked ? "hidden" : "modal"}`}>
+            <div className={`${isModelClose || isCloseButtonClicked ? "hidden" : "modal"}`}>
                 <div className="modal-box">
                     <div>
                         <div>
