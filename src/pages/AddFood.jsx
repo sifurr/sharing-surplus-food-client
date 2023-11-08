@@ -2,6 +2,7 @@ import axios from "axios";
 import useAuth from "../hooks/useAuth";
 // import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import PageDynamicTitle from "../components/PageDynamicTitle";
 
 
 const AddFood = () => {
@@ -44,6 +45,7 @@ const AddFood = () => {
     }
     return (
         <div>
+            <PageDynamicTitle pageTitle="Add Food" ></PageDynamicTitle>
             <h2 className='text-3xl text-center'>AddFood</h2>
             <div className="w-2/3 mx-auto">
                 <form onSubmit={handleSubmit} className="space-y-2">

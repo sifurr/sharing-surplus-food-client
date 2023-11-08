@@ -4,6 +4,7 @@ import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import axios from "axios";
+import PageDynamicTitle from "../components/PageDynamicTitle";
 
 
 const Register = () => {
@@ -94,6 +95,7 @@ const Register = () => {
 
     return (
         <div className="hero min-h-screen bg-base-200">
+            <PageDynamicTitle pageTitle="Registration" ></PageDynamicTitle>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <h1 className="text-4xl font-bold">Signup!</h1>

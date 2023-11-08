@@ -2,6 +2,7 @@ import axios from "axios";
 import Spinner from "../components/Spinner";
 import useMyFoodRequests from "../hooks/useMyFoodRequests";
 import Swal from "sweetalert2";
+import PageDynamicTitle from "../components/PageDynamicTitle";
 
 
 
@@ -49,6 +50,7 @@ const MyFoodRequests = () => {
 
     return (
         <div>
+            <PageDynamicTitle pageTitle="My Food Requests" ></PageDynamicTitle>
             <h2 className='text-3xl text-center'>My Food Requests </h2>
 
             {

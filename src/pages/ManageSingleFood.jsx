@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import useFoodRequestByOthers from "../hooks/useFoodRequestByOthers";
 import Spinner from "../components/Spinner";
 import useSingleFood from "../hooks/useSingleFood";
+import PageDynamicTitle from "../components/PageDynamicTitle";
 
 
 
@@ -20,6 +21,7 @@ const ManageSingleFood = () => {
 
     return (
         <div>
+            <PageDynamicTitle pageTitle="Manage Single Food" ></PageDynamicTitle>
             <h2 className='text-3xl text-center'>Manage Single Food</h2>
             <div className="text-center my-4 space-y-2">
                 <img className="w-40 mx-auto border-8 rounded-lg border-orange-400" src={foodMain?.foodImage} alt="" />

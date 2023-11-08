@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import useSingleFood from "../hooks/useSingleFood";
 import moment from 'moment'
 import { useState } from "react";
+import PageDynamicTitle from "../components/PageDynamicTitle";
 
 
 
@@ -68,6 +69,7 @@ const FoodDetails = () => {
 
     return (
         <Container>
+            <PageDynamicTitle pageTitle="Food Details" ></PageDynamicTitle>
             <div className="flex justify-center">
                 <div className="card w-96 card-compact bg-base-100 shadow-xl">
                     <figure><img className="w-96" src={foodImage} alt="Food" /></figure>

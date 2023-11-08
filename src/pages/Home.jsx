@@ -1,4 +1,7 @@
 import FeaturedFoods from "../components/FeaturedFoods";
+import Gallery from "../components/Gallery";
+import PageDynamicTitle from "../components/PageDynamicTitle";
+import Team from "../components/Team";
 import Container from "../components/ui/Container";
 
 
@@ -6,6 +9,7 @@ import Container from "../components/ui/Container";
 const Home = () => {
     return (
         <Container>
+            <PageDynamicTitle pageTitle="Home" ></PageDynamicTitle>
             {/* Hero section */}
             <div className="hero min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse">
@@ -20,11 +24,13 @@ const Home = () => {
 
             {/* Featured Foods section */}
             <FeaturedFoods></FeaturedFoods>
-            
+
             {/* Exra section 1 */}
-            <div><h2 className="text-3xl text-center bg-purple-700">Extra section - 1 </h2></div>
+            <Team></Team>
             {/* Exra section 2 */}
-            <div><h2 className="text-3xl text-center bg-orange-300">Extra section - 2 </h2></div>            
+            <div>
+                <Gallery></Gallery>
+            </div>
 
         </Container>
     );

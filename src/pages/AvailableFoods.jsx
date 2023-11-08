@@ -4,6 +4,7 @@ import Food from "../components/Food";
 import { useState } from "react";
 import useFoods from "../hooks/useFoods";
 import toast from "react-hot-toast";
+import PageDynamicTitle from "../components/PageDynamicTitle";
 
 
 
@@ -40,6 +41,7 @@ const AvailableFoods = () => {
     return (
         <div>
             <Container>
+            <PageDynamicTitle pageTitle="Available Foods" ></PageDynamicTitle>
                 <h2 className='text-3xl text-center'>Available Foods</h2>
 
                 <div className="my-4 flex justify-center gap-4">

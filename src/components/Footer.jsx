@@ -17,8 +17,7 @@ const Footer = () => {
                 </nav>
                 <nav>
                     <header className="footer-title">Organization</header>
-                    <Link to={'/about'} className="link link-hover">About us</Link>
-                    <Link to={'/contact'} className="link link-hover">Contact</Link>
+                    <Link to={'/about'} className="link link-hover">About us</Link>                    
                     <Link to={'#'} className="link link-hover">Jobs</Link>
                     <Link to={'#'} className="link link-hover">Press kit</Link>
                 </nav>
@@ -28,6 +27,14 @@ const Footer = () => {
                     <Link to={'#'} className="link link-hover">Privacy policy</Link>
                     <Link to={'#'} className="link link-hover">Cookie policy</Link>
                 </nav>
+                <aside>
+                    <header className="footer-title">Contact</header>
+                    <div>
+                        <p>210, Baker Street, London, England</p>
+                        <p>Phone: 000-000-000-000</p>
+                        <p>Email: contact@email.com</p>
+                    </div>
+                </aside>
                
             </footer>
             <footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">

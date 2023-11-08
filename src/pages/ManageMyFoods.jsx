@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import useMyFood from "../hooks/useMyFoods";
 import Swal from 'sweetalert2'
 import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table'
+import PageDynamicTitle from "../components/PageDynamicTitle";
 
 
 const ManageMyFoods = () => {
@@ -146,6 +147,7 @@ const ManageMyFoods = () => {
     return (
 
         <Container>
+            <PageDynamicTitle pageTitle="Manage My Food" ></PageDynamicTitle>
             <h2 className='text-3xl text-center'>ManageMyFoods</h2>
 
             <div>

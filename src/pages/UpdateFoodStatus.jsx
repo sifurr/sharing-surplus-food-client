@@ -5,6 +5,7 @@ import Spinner from "../components/Spinner";
 import axios from "axios";
 import moment from 'moment';
 import toast from "react-hot-toast";
+import PageDynamicTitle from "../components/PageDynamicTitle";
 
 const UpdateFoodStatus = () => {
     const { id } = useParams()
@@ -41,6 +42,7 @@ const UpdateFoodStatus = () => {
 
     return (
         <div>
+            <PageDynamicTitle pageTitle="Update Food Status" ></PageDynamicTitle>
             <h2 className='text-3xl text-center'>Update Food Status</h2>
             <div className="w-1/3 mx-auto my-10">
                 <form onSubmit={handleFoodStatusUpdate} className="space-y-2">                    

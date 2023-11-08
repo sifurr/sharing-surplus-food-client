@@ -16,7 +16,7 @@ const FeaturedFoods = () => {
 
     return (
         <Container>
-            <h2 className='text-3xl text-center'>FeaturedFoods </h2>
+            <h2 className='text-center text-4xl tracking-tight my-5 font-extrabold text-gray-900'>FeaturedFoods </h2>
             <div className="flex justify-center my-3">
                 <Link to={'/available-foods'} className="btn btn-primary">Show All</Link>
             </div>

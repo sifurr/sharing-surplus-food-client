@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import axios from "axios";
+import PageDynamicTitle from "../components/PageDynamicTitle";
 
 
 
@@ -69,6 +70,7 @@ const Login = () => {
 
     return (
         <div className="hero min-h-screen bg-base-200">
+            <PageDynamicTitle pageTitle="Login" ></PageDynamicTitle>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <h1 className="text-4xl font-bold">Login!</h1>
