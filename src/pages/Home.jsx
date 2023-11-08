@@ -1,23 +1,49 @@
+import { useEffect, useState } from "react";
 import FeaturedFoods from "../components/FeaturedFoods";
 import Gallery from "../components/Gallery";
 import PageDynamicTitle from "../components/PageDynamicTitle";
 import Team from "../components/Team";
 import Container from "../components/ui/Container";
-
+import { Carousel } from 'flowbite-react'
+import { Link } from "react-router-dom";
 
 
 const Home = () => {
+
+    const [sliderImages, setGalleryImages] = useState([])
+
+    useEffect(() => {
+        fetch('http://localhost:5000/api/v1/gallery')
+            .then(res => res.json())
+            .then(data => {
+                // console.log("from gallery: ",data)
+                setGalleryImages(data);
+            })
+    }, [])
+
     return (
         <Container>
             <PageDynamicTitle pageTitle="Home" ></PageDynamicTitle>
-            {/* Hero section */}
-            <div className="hero min-h-screen">
-                <div className="hero-content flex-col lg:flex-row-reverse">
-                    <img src="https://images.pexels.com/photos/6994993/pexels-photo-6994993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" className="max-w-sm rounded-lg shadow-2xl" />
+            {/* Hero section */}           
+            <div className="lg:h-56 sm:h-64 xl:h-80 2xl:h-96">
+                <Carousel>
+                    {
+                        sliderImages.slice(0,(Math.random() * 5)).map(image =>
+                            <div key={image._id}>
+                                <img src={image.src} alt="..." />                              
+                            </div>
+
+                        )
+                    }
+
+                </Carousel>
+            </div>
+            <div className="text-center">
+                <div className="">                    
                     <div>
-                        <h1 className="text-5xl font-bold">Donate Food</h1>
-                        <p className="py-6">Share your surplus for the community</p>
-                        <button className="btn btn-primary">Get Involved</button>
+                        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">Donate Food</h1>
+                        <p className="py-3 md: py:4 lg:py-6">Share your surplus for the community</p>
+                        <Link to={'/register'} className="btn btn-sm md:btn-md lg:btn-lg btn-primary ">Get Connected</Link>
                     </div>
                 </div>
             </div>

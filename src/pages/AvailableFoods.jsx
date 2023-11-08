@@ -62,7 +62,7 @@ const AvailableFoods = () => {
 
                 {/* Sort, searching, and default available foods */}
 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {
                         isSortBtnClicked ? data?.sort((a, b) => new Date(a.expireDate) - new Date(b.expireDate)).map(food => <Food key={food._id} food={food}> </Food>)
 

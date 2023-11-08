@@ -165,14 +165,12 @@ const FoodDetails = () => {
 
 
                                 <div className="modal-action">
-                                    <button type="submit" htmlFor="my_modal_6" className="btn">Send Request</button>
+                                    <button type="submit" htmlFor="my_modal_6" className="btn btn-primary">Send Request</button>
                                 </div>
-
-
-
                             </form>
+
                             <div className="mt-5">
-                                <button onClick={handleCloseButton} className="btn btn-info">Close Request</button>
+                                <button onClick={handleCloseButton} className="btn btn-warning">Close Request</button>
                             </div>
 
                             {/* <div className="modal-action">

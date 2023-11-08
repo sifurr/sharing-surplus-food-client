@@ -46,8 +46,10 @@ const MainNavbar = () => {
             </ul>
           </div>
           <div className="flex items-center gap-2">
-            <img className="h-14" src={logo} alt="" />
-            <Link className="normal-case text-xl">Food Sharing</Link>
+            <Link className="normal-case text-xl">
+            <img className="h-7 md:h-8 lg:h-14" src={logo} alt="" />
+              Food Sharing
+              </Link>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -58,11 +60,11 @@ const MainNavbar = () => {
         <div className="navbar-end">
           {
             user?.email ?
-              <Link onClick={handleLogout} to={'/'} className="mr-5 btn-neutral btn btn-sm"> Logout </Link>
+              <Link onClick={handleLogout} to={'/'} className="mr-2 lg:mr-5 btn-neutral btn btn-sm"> Logout </Link>
               :
               <>
-                <Link to={'/login'} className="mr-5 btn-neutral btn btn-sm">Login</Link>
-                <Link to={'/register'} className="mr-5 btn-primary btn btn-sm">Signup</Link>
+                <Link to={'/login'} className="mr-2 lg:mr-5 btn-neutral btn btn-sm">Login</Link>
+                <Link to={'/register'} className="mr-2 lg:mr-5 btn-primary btn btn-sm">Signup</Link>
               </>
           }
         </div>
