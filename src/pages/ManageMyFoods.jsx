@@ -1,83 +1,113 @@
 import axios from "axios";
-import useAuth from "../hooks/useAuth";
-import { useQuery } from '@tanstack/react-query'
 import Spinner from "../components/Spinner";
-import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import Container from "../components/ui/Container";
 import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
-import useFoods from "../hooks/useFoods";
 import useMyFood from "../hooks/useMyFoods";
 import Swal from 'sweetalert2'
-
-
-// const columns = [
-//     {
-//         accessorKey: "foodName",
-//         header: "Food Name",
-//         cell: (props) => <p>{props.getValue()}</p>
-//     },
-//     {
-//         accessorKey: "foodImage",
-//         header: "Food Image",
-//         cell: (props) => <p>{props.getValue()}</p>
-//     },
-//     {
-//         accessorKey: "foodQuantity",
-//         header: "Food Quantity",
-//         cell: (props) => <p>{props.getValue()}</p>
-//     },
-//     {
-//         accessorKey: "pickupLocation",
-//         header: "Pickup Location",
-//         cell: (props) => <p>{props.getValue()}</p>
-//     },
-//     {
-//         accessorKey: "expireDate",
-//         header: "Expire Date",
-//         cell: (props) => <p>{props.getValue()}</p>
-//     },
-//     {
-//         accessorKey: "donorName",
-//         header: "Donor Name",
-//         cell: (props) => <p>{props.getValue()}</p>
-//     },
-//     {
-//         accessorKey: "donorImage",
-//         header: "Donor Photo",
-//         cell: (props) => <p>{props.getValue()}</p>
-//     },
-//     {
-//         accessorKey: "donorEmail",
-//         header: "Donor Email",
-//         cell: (props) => <p>{props.getValue()}</p>
-//     },
-//     {
-//         accessorKey: "additionalNote",
-//         header: "Additional Notes",
-//         cell: (props) => <p>{props.getValue()}</p>
-//     },
-//     {
-//         accessorKey: "foodStatus",
-//         header: "Food Status",
-//         cell: (props) => <p>{props.getValue()}</p>
-//     },
-//     {
-//         accessorKey: "createdDate",
-//         header: "Create Date",
-//         cell: (props) => <p>{props.getValue()}</p>
-//     },
-// ]
+import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table'
 
 
 const ManageMyFoods = () => {
 
+    const columns = [
+        {
+            header: "Food Name",
+            accessorKey: "foodName",
+        },
+        {
+            header: "Food Image",
+            accessorKey: "foodImage",
+            cell: row => {
+                // console.log(row)
+                return <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12">
+                            <img src={row.getValue("foodImage")} alt="Avatar Tailwind CSS Component" />
+                        </div>
+                    </div>
+                </div>
+            },
+
+        },
+        {
+            header: "Food Quantity",
+            accessorKey: "foodQuantity",
+        },
+        {
+            header: "Donor Name",
+            accessorKey: "donorName",
+        },
+        {
+            header: "Pickup Location",
+            accessorKey: "pickupLocation",
+        },
+        {
+            header: "Expire Date",
+            accessorKey: "expireDate",
+        },
+        {
+            header: "Donor Photo",
+            accessorKey: "donorImage",
+            cell: row => {
+                // console.log(row)
+
+                return <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12">
+                            <img src={row.getValue("donorImage")} alt="Avatar Tailwind CSS Component" />
+                        </div>
+                    </div>
+                </div>
+            },
+        },
+        {
+            header: "Additional Notes",
+            accessorKey: "additionalNote",
+        },
+        {
+            header: "Food Status",
+            accessorKey: "foodStatus",
+        },
+        {
+            header: "Manage",
+            accessorKey: "_id",
+            cell: row => {
+                // console.log("from value", row)
+                
+                return <Link to={`/manage-single-food/${row.getValue("_id")}`} className="btn btn-info btn-xs mb-1">Mange</Link>
+            }
+
+        },
+        {
+            header: "Action",
+            accessorKey: "_id",
+            cell: row => {
+                // console.log("from value", row)                
+                return <th>
+                    <button onClick={() => handleDeleteById(row.getValue("_id"))} className="btn btn-error btn-xs mb-1">Delete</button>
+                    <Link to={`/update-food/${row.getValue("_id")}`} className="btn btn-primary btn-xs">Update</Link>
+                </th>
+            }
+        },
+    ]
+
+
+
+
     const { data, isLoading, refetch } = useMyFood()
+    const table = useReactTable({
+        columns,
+        data,
+        getCoreRowModel: getCoreRowModel()
+    });
+    // console.log(table)
 
 
     if (isLoading) {
         return <Spinner></Spinner>
     }
+
+    // console.log("from manage my food",data)
 
 
     const handleDeleteById = id => {
@@ -101,7 +131,7 @@ const ManageMyFoods = () => {
                                 title: "Deleted!",
                                 text: "Your food has been deleted.",
                                 icon: "success"
-                            });                            
+                            });
                             refetch();
                         }
                     })
@@ -109,41 +139,53 @@ const ManageMyFoods = () => {
             }
         });
 
-        console.log(id)
+        // console.log(id)
     }
 
 
-
-
-    // const table = useReactTable({
-    //     data,
-    //     columns,
-    //     getCoreRowModel: getCoreRowModel()
-    // })
-
-
-    // const handleDelete = (id) =>{
-    //     axios.delete(`http://localhost:5000/api/v1/user/cancel-food/${id}`)
-    //     .then(res => {
-    //         console.log(res.data)
-    //         if(res.data.deletedCount > 0){
-    //             toast.success("Deleted successfully")
-    //         }
-    //     })
-    // }
-
-
-
-    // console.log("from manage my food",data)
-
-
-
     return (
+
         <Container>
             <h2 className='text-3xl text-center'>ManageMyFoods</h2>
-            <div className="overflow-x-auto">
+
+            <div>
                 <table className="table">
-                    {/* head */}
+                    <thead>
+                        {table.getHeaderGroups().map(headerGroup => (
+                            <tr key={headerGroup.id}>
+                                {headerGroup.headers.map(header => (
+                                    <th key={header.id}>
+                                        {flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext()
+                                        )}
+                                    </th>
+                                ))}
+                            </tr>
+                        ))}
+                    </thead>
+
+                    <tbody>
+                        {table.getRowModel().rows.map(row => (
+                            <tr key={row.id} className="text-[12px]">
+                                {row.getVisibleCells().map(cell => (
+                                    <td key={cell.id}>
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                    </td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+            {/* <div className="overflow-x-auto">
+                <table className="table">
+                   
                     <thead>
                         <tr>
                             <th>Food Name</th>
@@ -159,7 +201,7 @@ const ManageMyFoods = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* row 1 */}
+                    
 
                         {
                             data.map(foodItem =>
@@ -191,15 +233,9 @@ const ManageMyFoods = () => {
                                 </tr>
                             )
                         }
-
-
-
-
                     </tbody>
-
-
                 </table>
-            </div>
+            </div> */}
         </Container>
     );
 };
