@@ -20,7 +20,7 @@ const MainNavbar = () => {
           <li><NavLink to={'manage-my-food'} >Manage My Foods </NavLink> </li>
           <li><NavLink to={'my-food-requests'} >My Food Request </NavLink> </li>
           <li><NavLink to={'profile'} >My Profile</NavLink> </li>
-          
+
 
         </>
       }
@@ -58,11 +58,13 @@ const MainNavbar = () => {
         <div className="navbar-end">
           {
             user?.email ?
-              <Link onClick={handleLogout} to={'/'} className="mr-5 btn-neutral btn btn-sm"> Logout {user.email} </Link>
+              <Link onClick={handleLogout} to={'/'} className="mr-5 btn-neutral btn btn-sm"> Logout </Link>
               :
-              <Link to={'/login'} className="mr-5 btn-neutral btn btn-sm">Login</Link>
+              <>
+                <Link to={'/login'} className="mr-5 btn-neutral btn btn-sm">Login</Link>
+                <Link to={'/register'} className="mr-5 btn-primary btn btn-sm">Signup</Link>
+              </>
           }
-          <Link to={'/register'} className="mr-5 btn-primary btn btn-sm">Signup</Link>
         </div>
       </div>
     </Container>

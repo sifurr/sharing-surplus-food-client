@@ -1,7 +1,7 @@
 import Spinner from "../components/Spinner";
 import Container from "../components/ui/Container";
 import Food from "../components/Food";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useFoods from "../hooks/useFoods";
 import toast from "react-hot-toast";
 
@@ -34,8 +34,6 @@ const AvailableFoods = () => {
         setSearchedFoods(filteredData);
         // console.log("Filtered data: ", filteredData);
         setIsSortBtnClicked(false)
-
-
     }
 
 

@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import axios from "axios";
 
 
 
@@ -17,34 +18,52 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
+        // console.log(email, password)
 
         login(email, password)
             .then(res => {
-                console.log(res.user)
-                toast.success("Logged in successfully")
-                setErrorMsg('')  
-                navigate(location?.state ? location.state : '/')
+                // console.log(res.user)
+                const user = { email };
+
+                axios.post(`http://localhost:5000/api/v1/auth/access-token`, user, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.success) {                            
+                            toast.success("Logged in successfully")
+                            setErrorMsg('')
+                            navigate(location?.state ? location.state : '/')
+                        }
+                    })
 
             })
             .catch(err => {
                 toast.error(err.message)
-                setErrorMsg(err.message)  
-                console.log(err)
+                setErrorMsg(err.message)
+                // console.log(err)
             })
     }
 
     const handleGoogleLogin = () => {
         googleLogin()
             .then(res => {
-                console.log(res)
-                toast.success("Logged in successfully")
-                setErrorMsg('')  
-                navigate(location?.state ? location.state : '/')
+                // console.log(res)
+                const email = res.user.email;
+                // console.log("from google sign-in",email)
+                const user = { email };
+
+                axios.post(`http://localhost:5000/api/v1/auth/access-token`, user, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.success) {                            
+                            toast.success("Logged in successfully")
+                            setErrorMsg('')
+                            navigate(location?.state ? location.state : '/')
+                        }
+                    })               
             })
             .catch(err => {
                 toast.error(err.message)
-                setErrorMsg(err.message)  
+                setErrorMsg(err.message)
             })
     }
 
@@ -62,13 +81,13 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="text" name="email" placeholder="email" className="input input-bordered" required />
+                            <input type="email" name="email" placeholder="email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="text" name="password" placeholder="password" className="input input-bordered" required />
+                            <input type="password" name="password" placeholder="password" className="input input-bordered" required />
                         </div>
 
                         <div className="form-control mt-6">

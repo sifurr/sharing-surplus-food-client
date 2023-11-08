@@ -3,11 +3,12 @@ import useAuth from "../hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import axios from "axios";
 
 
 const Register = () => {
 
-    const { createUser, setLoading, googleLogin } = useAuth();
+    const { createUser, setLoading, googleLogin, logout } = useAuth();
     const [inputError, setInputError] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
     const location = useLocation();
@@ -43,14 +44,17 @@ const Register = () => {
                     displayName: name,
                     photoURL: photo
                 })
-                    .then(() => console.log("Profile created"))
+                    .then(() => {
+                        console.log("Profile created")
+                    })
                     .catch(err => {
-                        setErrorMsg(err.message)  
+                        setErrorMsg(err.message)
                         console.log(err)
                     })
-                setLoading(false)
-                toast.success("Registration successful")
-                navigate('/')
+                setLoading(false)           
+                
+                handleLogout();                
+                navigate('/login')
             })
             .catch(err => {
                 setErrorMsg(err.message)
@@ -58,12 +62,30 @@ const Register = () => {
             })
     }
 
+    const handleLogout = () => {
+        logout()
+          .then(() => {
+            toast.success("Registration successful. Now you can login")
+          })
+          .catch(err => console.log(err))
+      }
+
     const handleGoogleLogin = () => {
         googleLogin()
             .then(res => {
+                const email = res.user.email;
+                // console.log("from google sign-in",email)
+                const user = { email };
 
-                setErrorMsg('')
-                navigate(location?.state ? location.state : '/')
+                axios.post(`http://localhost:5000/api/v1/auth/access-token`, user, { withCredentials: true })
+                    .then(res => {
+                        // console.log(res.data)
+                        if (res.data.success) {                            
+                            toast.success("Logged in successfully")
+                            setErrorMsg('')
+                            navigate(location?.state ? location.state : '/')
+                        }
+                    })              
             })
             .catch(err => {
                 setErrorMsg(err.message)
@@ -106,19 +128,19 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="text" name="email" placeholder="email" className="input input-bordered" required />
+                            <input type="email" name="email" placeholder="email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="text" name="password" placeholder="password" className="input input-bordered" required />
+                            <input type="password" name="password" placeholder="password" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Photo URL</span>
                             </label>
-                            <input type="text" name="photo" placeholder="photo url" className="input input-bordered" required />
+                            <input type="url" name="photo" placeholder="photo url" className="input input-bordered" required />
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>
@@ -126,7 +148,7 @@ const Register = () => {
                     </form>
                     <div className="mx-auto mb-5">
                         <div>
-                            <Link onClick={handleGoogleLogin} className="btn btn-primary" >Login with Google</Link>
+                            <Link onClick={handleGoogleLogin} className="btn btn-primary">Login with Google</Link>
                             <p className="text-red-500 text-sm mb-5 text-center">
                                 {
                                     errorMsg ? errorMsg : ''
