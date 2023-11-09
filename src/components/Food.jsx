@@ -13,7 +13,7 @@ const Food = ({ food }) => {
                     <p>Donor name:{donorName} </p>
                     <p>Donor Photo:</p>
                     <div className="avatar">
-                        <div className="lg:w-24 rounded">
+                        <div className="w-10 lg:w-24 rounded">
                             <img src={donorImage && donorImage}  />
                         </div>
                     </div>

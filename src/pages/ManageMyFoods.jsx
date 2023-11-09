@@ -35,7 +35,7 @@ const ManageMyFoods = () => {
             accessorKey: "foodQuantity",
         },
         {
-            header: "Donor Name",
+            header: "My Name",
             accessorKey: "donorName",
         },
         {
@@ -47,7 +47,7 @@ const ManageMyFoods = () => {
             accessorKey: "expireDate",
         },
         {
-            header: "Donor Photo",
+            header: "My Photo",
             accessorKey: "donorImage",
             cell: row => {
                 // console.log(row)
@@ -148,7 +148,7 @@ const ManageMyFoods = () => {
 
         <Container>
             <PageDynamicTitle pageTitle="Manage My Food" ></PageDynamicTitle>
-            <h2 className='text-3xl text-center'>ManageMyFoods</h2>
+            <h2 className='text-3xl text-center'>Manage My Foods</h2>
 
             <div>
                 <table className="table">
@@ -185,59 +185,7 @@ const ManageMyFoods = () => {
 
 
 
-            {/* <div className="overflow-x-auto">
-                <table className="table">
-                   
-                    <thead>
-                        <tr>
-                            <th>Food Name</th>
-                            <th>Food Image</th>
-                            <th>Food Quantity</th>
-                            <th>Donor Name</th>
-                            <th>Pickup Location</th>
-                            <th>Expire Date</th>
-                            <th>Additional Notes</th>
-                            <th>Food Status</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    
 
-                        {
-                            data.map(foodItem =>
-                                <tr key={foodItem._id}>
-                                    <td>{foodItem.foodName}</td>
-
-                                    <td>
-                                        <div className="flex items-center space-x-3">
-                                            <div className="avatar">
-                                                <div className="mask mask-squircle w-12 h-12">
-                                                    <img src={foodItem.foodImage} alt="Avatar Tailwind CSS Component" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>{foodItem.foodQuantity}</td>
-                                    <td>{foodItem.donorName}</td>
-                                    <td>{foodItem.pickupLocation}</td>
-                                    <td>{foodItem.expireDate}</td>
-                                    <td>{foodItem.additionalNote}</td>
-                                    <td>{foodItem.foodStatus}</td>
-                                    <th>
-                                        <Link to={`/manage-single-food/${foodItem._id}`} className="btn btn-info btn-xs mb-1">Mange</Link>
-                                    </th>
-                                    <th>
-                                        <button onClick={() => handleDeleteById(foodItem._id)} className="btn btn-error btn-xs mb-1">Delete</button>
-                                        <Link to={`/update-food/${foodItem._id}`} className="btn btn-primary btn-xs">Update</Link>
-                                    </th>
-                                </tr>
-                            )
-                        }
-                    </tbody>
-                </table>
-            </div> */}
         </Container>
     );
 };

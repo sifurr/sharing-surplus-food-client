@@ -57,9 +57,9 @@ const AvailableFoods = () => {
 
                 </h2>
 
-                <div className="my-4 flex justify-center gap-4">
+                <div className="my-4 flex flex-col lg:flex-row justify-center gap-4">
                     {/* Search */}
-                    <form onSubmit={handleSearchButton} className="join">
+                    <form onSubmit={handleSearchButton} className="join flex flex-col lg:flex-row">
                         <div>
                             <div>
                                 <input type="text" name="search" className="input input-bordered join-item" placeholder="Search" />

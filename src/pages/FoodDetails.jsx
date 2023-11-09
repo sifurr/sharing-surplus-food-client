@@ -176,6 +176,7 @@ const FoodDetails = () => {
                             {/* <div className="modal-action">
                             <label onClick={handleRequest} htmlFor="my_modal_6" className="btn">Send Request</label>
                          </div>  */}
+                         
                         </div>
 
                     </div>

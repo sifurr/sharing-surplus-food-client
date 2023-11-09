@@ -1,8 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from '../assets/images/food-sharing-logo.png'
-import Container from "./ui/Container";
 import useAuth from '../hooks/useAuth'
 import toast from 'react-hot-toast'
+import './MainNavbar.css'
 
 
 const MainNavbar = () => {
@@ -30,6 +30,7 @@ const MainNavbar = () => {
                                 <>
                                     <li><NavLink to={'/'}>Home</NavLink></li>
                                     <li><Link to={'/login'} className="lg:hidden block">Login</Link></li>
+                                    <Link to={'/register'}>Register</Link>
                                 </>
                                 :
                                 <>
@@ -45,7 +46,7 @@ const MainNavbar = () => {
                 <div>
                     <Link className="normal-case text-xl flex items-center gap-3">
                         <img src={logo} className="w-[60px] lg:w-[60px]" alt="" />
-                        <span className='font-bold text-2xl'>Food <span className=''>Sharing</span></span>
+                        <span className='font-bold text-lg mr-5 lg:mr-0 lg:text-2xl'>Food <span className=''>Sharing</span></span>
                     </Link>
                 </div>
             </div>
@@ -91,7 +92,7 @@ const MainNavbar = () => {
                         :
                         <>
                             <Link to={`/login`} className="hidden lg:block">Login</Link>
-                            <Link to={'/register'}>Register</Link>
+                            <Link to={'/register'} className="hidden lg:block">Register</Link>
                         </>
                 }
 
