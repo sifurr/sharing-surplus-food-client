@@ -10,7 +10,7 @@ const Team = () => {
     const [fullTeam, setFullTeam] = useState([])
 
     useEffect(() => {
-        fetch('https://b8a11-server-side-sifurr.vercel.app/api/v1/team')
+        fetch('http://localhost:5000/api/v1/team')
             .then(res => res.json())
             .then(data => {
                 console.log(data)

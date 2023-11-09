@@ -30,7 +30,7 @@ const UpdateFoodStatus = () => {
         const foodInfo = { foodStatus };
         // console.log(project);
 
-        axios.patch(`https://b8a11-server-side-sifurr.vercel.app/api/v1/user/update-food-status/${id}`, foodInfo)
+        axios.patch(`http://localhost:5000/api/v1/user/update-food-status/${id}`, foodInfo)
             .then(res => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {

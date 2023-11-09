@@ -29,7 +29,7 @@ const MyFoodRequests = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`https://b8a11-server-side-sifurr.vercel.app/api/v1/user/cancel-food-request/${id}`)
+                axios.delete(`http://localhost:5000/api/v1/user/cancel-food-request/${id}`)
                     .then(res => {
                         console.log("res from project", res);
                         if (res?.data?.deletedCount > 0) {

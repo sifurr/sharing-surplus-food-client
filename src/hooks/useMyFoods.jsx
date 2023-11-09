@@ -12,7 +12,7 @@ const useMyFood = () => {
         enabled: !!email,
         queryKey: ['myFoods'],
         queryFn: async () => {
-            const res = await axios.get(`https://b8a11-server-side-sifurr.vercel.app/api/v1/user/foods?email=${email}`, { withCredentials: true });
+            const res = await axios.get(`http://localhost:5000/api/v1/user/foods?email=${email}`, { withCredentials: true });
             return res.data;
         },
     })

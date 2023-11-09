@@ -8,7 +8,7 @@ const Gallery = () => {
     const [galleryImages, setGalleryImages] = useState([])
 
     useEffect(() => {
-        fetch('https://b8a11-server-side-sifurr.vercel.app/api/v1/gallery')
+        fetch('http://localhost:5000/api/v1/gallery')
             .then(res => res.json())
             .then(data => {
                 console.log("from gallery: ", data)
