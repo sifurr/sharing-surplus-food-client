@@ -1,6 +1,6 @@
-# Community Food Sharing Assignment
+# Food Sharing Assignment
 
-###
+### Some features of the project in short
 
 - Food can be add from the frontend
 - A user also can request for foods
@@ -11,8 +11,8 @@
 - React-table (Tanstack-react-table) has been used for tabular data display
 - User can edit or remove food from his/her end if he/hse owns the foods
 - Home page is responsive on mobile, tablet, laptop, and desktop
-- Dynamic page title display on the tab
+- Dynamic page title display on the tabs
 - Page scrolling progress animation has been added with Framer Motion
 
-Client side live link:
-Site live link: https://community-food-sharing-16b93.web.app
+
+Website live link: https://community-food-sharing-16b93.web.app
