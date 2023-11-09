@@ -48,7 +48,7 @@ const FoodDetails = () => {
         const additionalNote = event.target.additionalNote.value;
         const request = { requesterName, requesterEmail, requesterImage, requestDate, foodId, foodStatus, foodName, foodImage, donorEmail, donorName, pickupLocation, expireDate, additionalNote, donationMoney };
 
-        axios.post(`http://localhost:5000/api/v1/user/food-requests`, request)
+        axios.post(`https://community-food-sharing-server-two.vercel.app/api/v1/user/food-requests`, request)
             .then(res => {
                 console.log("food request: ", res.data)
                 if (res.data.insertedId) {
@@ -176,7 +176,7 @@ const FoodDetails = () => {
                             {/* <div className="modal-action">
                             <label onClick={handleRequest} htmlFor="my_modal_6" className="btn">Send Request</label>
                          </div>  */}
-                         
+
                         </div>
 
                     </div>

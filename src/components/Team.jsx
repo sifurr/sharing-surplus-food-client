@@ -10,7 +10,7 @@ const Team = () => {
     const [fullTeam, setFullTeam] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/v1/team')
+        fetch('https://community-food-sharing-server-two.vercel.app/api/v1/team')
             .then(res => res.json())
             .then(data => {
                 console.log(data)

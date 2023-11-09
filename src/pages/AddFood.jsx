@@ -31,7 +31,7 @@ const AddFood = () => {
 
         // console.log(food)
 
-        axios.post(`http://localhost:5000/api/v1/user/create-food`, food)
+        axios.post(`https://community-food-sharing-server-two.vercel.app/api/v1/user/create-food`, food)
             .then(res => {
                 // console.log(res.data)
                 if (res.data.insertedId) {

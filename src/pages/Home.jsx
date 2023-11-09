@@ -13,7 +13,7 @@ const Home = () => {
     const [sliderImages, setGalleryImages] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/v1/gallery')
+        fetch('https://community-food-sharing-server-two.vercel.app/api/v1/gallery')
             .then(res => res.json())
             .then(data => {
                 // console.log("from gallery: ",data)

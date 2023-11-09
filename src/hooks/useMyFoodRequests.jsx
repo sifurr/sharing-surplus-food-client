@@ -12,7 +12,7 @@ const useMyFoodRequests = () => {
         enabled: !!email,
         queryKey: ['myFoodRequests'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/api/v1/user/food-requests?email=${email}`, { withCredentials: true });
+            const res = await axios.get(`https://community-food-sharing-server-two.vercel.app/api/v1/user/food-requests?email=${email}`, { withCredentials: true });            
             return res.data;
         },
     })

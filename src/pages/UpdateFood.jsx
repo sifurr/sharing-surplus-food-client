@@ -40,7 +40,7 @@ const UpdateFood = () => {
         const foodInfo = { foodImage, foodName, foodQuantity, pickupLocation, expireDate, donorName, donorEmail, donorImage, additionalNote, foodStatus, updatedDate };
         // console.log(project);
 
-        axios.patch(`http://localhost:5000/api/v1/user/update-food/${id}`, foodInfo)
+        axios.patch(`https://community-food-sharing-server-two.vercel.app/api/v1/user/update-food/${id}`, foodInfo)
             .then(res => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {

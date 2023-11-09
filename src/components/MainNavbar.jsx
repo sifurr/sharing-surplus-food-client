@@ -9,7 +9,6 @@ const MainNavbar = () => {
 
     const { logout, user } = useAuth()
 
-
     const handleLogout = () => {
         logout()
             .then(() => toast.success("Logged out!"))

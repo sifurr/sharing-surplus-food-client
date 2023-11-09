@@ -6,7 +6,7 @@ const useSingleFood = (id) => {
     const { data, isLoading, isFetching, refetch } = useQuery({
         queryKey: ['singleFood'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/api/v1/foods/${id}`);
+            const res = await axios.get(`https://community-food-sharing-server-two.vercel.app/api/v1/foods/${id}`);            
             return res.data;
         },
     })

@@ -78,7 +78,7 @@ const Register = () => {
                 // console.log("from google sign-in",email)
                 const user = { email };
 
-                axios.post(`http://localhost:5000/api/v1/auth/access-token`, user, { withCredentials: true })
+                axios.post(`https://community-food-sharing-server-two.vercel.app/api/v1/auth/access-token`, user, { withCredentials: true })
                     .then(res => {
                         // console.log(res.data)
                         if (res.data.success) {

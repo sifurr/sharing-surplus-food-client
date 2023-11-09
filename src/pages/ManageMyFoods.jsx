@@ -124,7 +124,7 @@ const ManageMyFoods = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:5000/api/v1/user/cancel-food/${id}`)
+                axios.delete(`https://community-food-sharing-server-two.vercel.app/api/v1/user/cancel-food/${id}`)
                     .then(res => {
                         console.log("res from project", res);
                         if (res?.data?.deletedCount > 0) {
