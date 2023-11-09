@@ -25,7 +25,7 @@ const Home = () => {
         <Container>
             <PageDynamicTitle pageTitle="Home" ></PageDynamicTitle>
             {/* Hero section */}
-            <div className="lg:h-56 sm:h-64 xl:h-80 2xl:h-96">
+            <div className="lg:h-56 hidden lg:block xl:h-80 2xl:h-96">
                 <Carousel>
                     {
                         sliderImages.slice(0, (Math.random() * 5)).map(image =>

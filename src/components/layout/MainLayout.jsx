@@ -24,6 +24,7 @@ const MainLayout = ({ children }) => {
             }}
              />
             
+            
 
             <MainNavbar></MainNavbar>
             {children}
