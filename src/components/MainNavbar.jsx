@@ -34,8 +34,8 @@ const MainNavbar = () => {
   }
 
   return (
-    <Container>
-      <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100">
+      <Container>
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -47,9 +47,9 @@ const MainNavbar = () => {
           </div>
           <div className="flex items-center gap-2">
             <Link className="normal-case text-xl">
-            <img className="h-7 md:h-8 lg:h-14" src={logo} alt="" />
+              <img className="h-7 md:h-8 lg:h-14" src={logo} alt="" />
               Food Sharing
-              </Link>
+            </Link>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -68,8 +68,8 @@ const MainNavbar = () => {
               </>
           }
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 };
 

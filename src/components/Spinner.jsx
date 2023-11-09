@@ -1,11 +1,6 @@
-import { useState, CSSProperties, useEffect } from "react";
+import { useState, useEffect } from "react";
 import PacmanLoader from "react-spinners/PacmanLoader";
 
-const override = {
-    display: "block",
-    margin: "0 auto",
-    borderColor: "green",
-};
 
 const Spinner = () => {
 
@@ -22,6 +17,7 @@ const Spinner = () => {
      margin: 0 auto;
      border-color: red;
    `;
+   
     return (
         <div className="min-h-screen flex items-center">
             <div className="sweet-loading mx-auto">
